@@ -1,24 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { detailProduct } from "../../actions/productActions.js";
+import LoadingBox from "../../components/LoadingBox.js";
+import MessageBox from "../../components/MessageBox.js";
 import PriceBox from "../../components/PriceBox.js";
 import Rating from "../../components/Rating.js";
-import { data } from "../../data.js";
 import "./ProductItemScreen.styles.scss";
 
 export default function ProductItemScreen(props) {
-  const item = data.products.find((i) => i._id === props.match.params.id);
-  const [image, setImage] = useState(item.images[0]);
+  const productDetail = useSelector((state) => state.productDetail);
+  const { loading, error, product } = productDetail;
+  const {
+    name,
+    images,
+    materials,
+    price,
+    onDiscount,
+    reviews,
+    description,
+    countInStock,
+  } = product;
+  const dispatch = useDispatch();
+
+  const [imageIndex, setImageIndex] = useState(0);
+
   const onImageClicked = (e) => {
-    setImage(e.target.currentSrc);
+    setImageIndex(e.target.alt);
   };
 
+  useEffect(() => {
+    dispatch(detailProduct(props.match.params.id));
+  }, [dispatch, props.match.params.id]);
+
   const renderGallery = () => {
-    const renderImages = item.images.map((image, index) => {
+    const renderImages = images.map((image, index) => {
       return (
         <img
           key={index}
           className="image-small col-3"
           src={image}
-          alt={item.name}
+          alt={index}
           onClick={(e) => onImageClicked(e)}
         ></img>
       );
@@ -27,7 +48,7 @@ export default function ProductItemScreen(props) {
   };
 
   const renderOption = () => {
-    return item.materials.map((material, index) => {
+    return materials.map((material, index) => {
       return (
         <option key={index} value={`${material}`}>
           {material}
@@ -36,21 +57,28 @@ export default function ProductItemScreen(props) {
     });
   };
 
+  if (loading) {
+    return <LoadingBox />;
+  }
+  if (error) {
+    return <MessageBox variant="danger">{error}</MessageBox>;
+  }
+
   return (
     <div>
       <div className="row-container">
         <div className="col-2">
-          <img className="image-large" src={image} alt={item.name} />
+          <img className="image-large" src={images[imageIndex]} alt={name} />
           {renderGallery()}
         </div>
 
         <div className="col-1">
           <div className="row ">
-            <p className="title">{item.name}</p>
-            <Rating rating={item.rating} numReviews={item.numReviews} />
+            <p className="title">{name}</p>
+            <Rating reviews={reviews} />
           </div>
 
-          <PriceBox price={item.price} discount={item.onDiscount} />
+          <PriceBox price={price} discount={onDiscount} />
           <div className="select">
             <label forhtml="materials">Material:</label>
 
@@ -59,11 +87,11 @@ export default function ProductItemScreen(props) {
             </select>
           </div>
 
-          <p className="description">{item.description}</p>
+          <p className="description">{description}</p>
           <button
             type="button"
             className="primary"
-            disabled={item.countInStock === 0}
+            disabled={countInStock === 0}
           >
             ADD TO CART
           </button>

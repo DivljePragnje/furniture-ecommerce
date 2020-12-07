@@ -41,7 +41,6 @@ export default function Slideshow() {
       return (
         <div key={index} className={`mySlides fade ${display}`}>
           <img src={content.image} alt="dsadsa" />
-          {console.log(content.position)}
           <div className={`textbox ${content.position}`}>
             <h1>{content.title}</h1>
             <p>{content.description}</p>

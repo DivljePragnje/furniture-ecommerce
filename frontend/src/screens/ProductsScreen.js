@@ -1,16 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductItem from "../components/ProductItem.js";
-import { data } from "../data.js";
+import { useDispatch, useSelector } from "react-redux";
+
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { listProducts } from "../actions/productActions.js";
 
 export default function ProductsScreen(props) {
-  let items = data.products;
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
+
+  let items = products;
 
   if (props.location.state !== "all") {
-    items = data.products.filter((item) => {
+    //TODO: direct path(writing in address bar) is causing error ("category" of undefined)
+    items = products.filter((item) => {
       return item.category.toLowerCase() === props.location.state.category;
     });
   }
   const renderItems = () => {
+    if (loading) {
+      return <LoadingBox />;
+    }
+    if (error) {
+      return <MessageBox varient="danger">{error}</MessageBox>;
+    }
     const renderItems = items.map((item) => {
       return <ProductItem key={item._id} data={item} history={props.history} />;
     });
@@ -18,10 +37,11 @@ export default function ProductsScreen(props) {
   };
 
   const getTitlePath = () => {
-    return (
+    //TODO: direct path(writing in address bar) is causing error ("category" of undefined)
+    /*return (
       "HOME / COLLECTION / " +
       props.history.location.state.category.toUpperCase()
-    );
+    );*/
   };
   return (
     <div>

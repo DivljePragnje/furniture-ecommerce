@@ -1,20 +1,11 @@
 import React from "react";
 
 function Rating(props) {
-  const { rating, numReviews } = props;
+  let rating =
+    props.reviews.reduce((a, c) => a + c.rating, 0) / props.reviews.length;
+  const numReviews = props.reviews.length;
   return (
     <div className="rating">
-      <span>
-        <i
-          className={
-            rating >= 1
-              ? "fa fa-star"
-              : rating >= 0.5
-              ? "fa fa-star-half-o"
-              : "fa fa-start-o"
-          }
-        ></i>
-      </span>
       <span>
         <i
           className={
