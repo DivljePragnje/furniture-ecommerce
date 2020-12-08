@@ -1,5 +1,6 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { signOut } from "./actions/userActions";
 import HomeScreen from "./screens/HomeScreen";
 import ProductItemScreen from "./screens/ProductItemScreen/ProductItemScreen";
 import ProductsScreen from "./screens/ProductsScreen";
@@ -8,6 +9,10 @@ import SignInScreen from "./screens/SigninScreen/SignInScreen";
 function App() {
   const userDetails = useSelector((state) => state.userDetails);
   const { userInfo } = userDetails;
+  const dispatch = useDispatch();
+  const onSignOut = () => {
+    dispatch(signOut());
+  };
   return (
     <Router>
       <div className="grid-container">
@@ -35,9 +40,23 @@ function App() {
           </div>
           <div>
             <Link to="/cart">Cart</Link>
-            <Link to="/signin">
-              {userInfo ? userInfo.data.name : "Sign-in"}
-            </Link>
+            {userInfo ? (
+              <div className="dropdown">
+                <div className="dropdown-header">
+                  <Link className="dropdown-header-link" to="/collection/all">
+                    {userInfo.data.name}
+                  </Link>
+                  <i className="fa fa-caret-down"></i>
+                </div>
+                <div className="dropdown-content right">
+                  <Link className="navlink" to="#signout" onClick={onSignOut}>
+                    Sign Out
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <Link to="/signin">Sign-in</Link>
+            )}
           </div>
         </header>
         <main>

@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  margin: 0;
+  margin: 0 20rem;
   height: 100vh;
   font-size: 1.6rem;
   font-family: "Rubik", sans-serif;
@@ -83,9 +83,6 @@ footer {
   justify-content: space-evenly;
 }
 
-.column.small {
-}
-
 .column.top {
   justify-content: flex-start;
 }
@@ -120,8 +117,13 @@ header a {
   display: none;
   position: absolute;
   background-color: #713434;
+
   min-width: 160px;
   z-index: 1;
+}
+
+.dropdown-content.right {
+  right: 0;
 }
 .dropdown-content .navlink {
   color: #ffffff;

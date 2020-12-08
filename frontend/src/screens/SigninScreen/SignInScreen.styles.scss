@@ -33,6 +33,20 @@
     margin: 15px 0;
   }
 
+  .invalid-message {
+    position: absolute;
+    text-align: center;
+    font-size: 14px;
+    left: 20%;
+    top: 5%;
+    border: 0.1ram solid transparent;
+    border-radius: 0.5rem;
+    color: white;
+    background-color: #a02020;
+    margin: 15px;
+    padding: 20px 15px;
+  }
+
   button {
     cursor: pointer;
     width: 100%;

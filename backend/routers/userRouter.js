@@ -31,28 +31,33 @@ userRouter.post(
         return;
       }
     }
-    res.status(401).send({ message: "Invalid User mail or password" });
+    res.status(401).send({ message: "Invalid Email or password" });
   })
 );
 
 userRouter.post(
   "/register",
   expressAsyncHanlder(async (req, res) => {
-    console.log(req);
     const user = new User({
       name: req.body.name,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
     });
 
-    const data = await user.save();
-    res.send({
-      _id: data._id,
-      name: data.name,
-      email: data.email,
-      isAdmin: user.isAdmin,
-      token: generateToken(data),
-    });
+    user
+      .save()
+      .then(() =>
+        res.send({
+          _id: data._id,
+          name: data.name,
+          email: data.email,
+          isAdmin: user.isAdmin,
+          token: generateToken(data),
+        })
+      )
+      .catch((err) =>
+        res.status(400).send({ message: "Email is already taken" })
+      );
   })
 );
 

@@ -5,7 +5,9 @@ import "./SignInScreen.styles.scss";
 
 export default function SignInScreen(props) {
   const userDetails = useSelector((state) => state.userDetails);
-  const { userInfo } = userDetails;
+  const userRegister = useSelector((state) => state.userRegister);
+
+  const { userInfo, error } = userDetails;
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -14,9 +16,6 @@ export default function SignInScreen(props) {
   const [activePanel, setActivePanel] = useState("signIn");
 
   const onSignInAnimation = () => {
-    setName("");
-    setEmail("");
-    setPassword("");
     setActivePanel("signIn");
   };
   const handleSignIn = (e) => {
@@ -25,9 +24,6 @@ export default function SignInScreen(props) {
   };
 
   const onSignUpAnimation = () => {
-    setName("");
-    setEmail("");
-    setPassword("");
     setActivePanel("signUp");
   };
   const handleSignUp = (e) => {
@@ -51,6 +47,11 @@ export default function SignInScreen(props) {
         id="container"
       >
         <div className="form-container sign-up-container">
+          {userRegister.error ? (
+            <div className="invalid-message">{userRegister.error}</div>
+          ) : (
+            ""
+          )}
           <form onSubmit={handleSignUp}>
             <h1>Create Account</h1>
             <input
@@ -73,6 +74,8 @@ export default function SignInScreen(props) {
           </form>
         </div>
         <div className="form-container sign-in-container">
+          {error ? <div className="invalid-message">{error}</div> : ""}
+
           <form onSubmit={handleSignIn}>
             <h1>Sign in</h1>
             <input
