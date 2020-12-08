@@ -111,8 +111,9 @@ header a {
   display: inline-block;
 }
 
-.dropdown p {
-  padding: 0 1rem;
+.dropdown-header {
+  padding: 2rem 1rem 2rem 0rem;
+  cursor: pointer;
 }
 
 .dropdown-content {
@@ -124,8 +125,6 @@ header a {
 }
 .dropdown-content .navlink {
   color: #ffffff;
-
-  padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
@@ -139,6 +138,17 @@ header a {
 
 .dropdown:hover .dropdown-content {
   display: block;
+  padding-top: 1rem;
+}
+
+.dropdown:hover .dropdown-header {
+  padding: 2rem 1rem 2rem 0rem;
+  background-color: #713434;
+  color: white;
+}
+.dropdown:hover .dropdown-header-link {
+  background-color: #713434;
+  color: white;
 }
 
 /* SELECTOR */

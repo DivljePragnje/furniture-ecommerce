@@ -3,7 +3,10 @@ import { data } from "./data.js";
 import cors from "cors";
 import mongoose from "mongoose";
 import userRouter from "./routers/userRouter.js";
+import dotenv from "dotenv";
 import productRouter from "./routers/productRouter.js";
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;

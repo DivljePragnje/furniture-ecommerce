@@ -16,11 +16,10 @@ export default function ProductsScreen(props) {
   }, [dispatch]);
 
   let items = products;
-
-  if (props.location.state !== "all") {
-    //TODO: direct path(writing in address bar) is causing error ("category" of undefined)
+  const category = props.location.pathname.split("/")[2];
+  if (category !== "all") {
     items = products.filter((item) => {
-      return item.category.toLowerCase() === props.location.state.category;
+      return item.category.toLowerCase() === category;
     });
   }
   const renderItems = () => {
@@ -37,11 +36,7 @@ export default function ProductsScreen(props) {
   };
 
   const getTitlePath = () => {
-    //TODO: direct path(writing in address bar) is causing error ("category" of undefined)
-    /*return (
-      "HOME / COLLECTION / " +
-      props.history.location.state.category.toUpperCase()
-    );*/
+    return "HOME / COLLECTION / " + category.toUpperCase();
   };
   return (
     <div>
