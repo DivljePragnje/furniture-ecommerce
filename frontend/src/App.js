@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { signOut } from "./actions/userActions";
+import CartScreen from "./screens/CartScreen/CartScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ProductItemScreen from "./screens/ProductItemScreen/ProductItemScreen";
 import ProductsScreen from "./screens/ProductsScreen";
@@ -8,6 +9,7 @@ import SignInScreen from "./screens/SigninScreen/SignInScreen";
 
 function App() {
   const userDetails = useSelector((state) => state.userDetails);
+  const cartItems = useSelector((state) => state.cartItems);
   const { userInfo } = userDetails;
   const dispatch = useDispatch();
   const onSignOut = () => {
@@ -39,7 +41,10 @@ function App() {
             </div>
           </div>
           <div>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">
+              Cart
+              {cartItems.length > 0 && <span> ( {cartItems.length} ) </span>}
+            </Link>
             {userInfo ? (
               <div className="dropdown">
                 <div className="dropdown-header">
@@ -65,6 +70,7 @@ function App() {
             component={ProductsScreen}
             exact
           />
+          <Route path="/cart" component={CartScreen}></Route>
           <Route path="/signin" component={SignInScreen} />
           <Route path="/product/:id" component={ProductItemScreen} />
           <Route path="/" component={HomeScreen} exact />

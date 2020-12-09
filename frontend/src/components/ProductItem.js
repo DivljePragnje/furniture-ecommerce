@@ -1,8 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../actions/cartActions";
 import PriceBox from "./PriceBox";
 
 export default function ProductItem(props) {
-  const { _id, images, name, price, countInStock, onDiscount } = props.data;
+  const { product } = props;
+  const { _id, images, name, price, countInStock, onDiscount } = product;
+  const dispatch = useDispatch();
+
+  const onAddToCart = (e) => {
+    e.stopPropagation();
+    dispatch(addToCart(product, 1));
+  };
 
   const renderOptional = () => {
     return countInStock === 0 ? (
@@ -17,12 +26,16 @@ export default function ProductItem(props) {
     props.history.push(`/product/${_id}`);
   };
 
-  // TODO: Implement Add to Cart
   return (
     <div className="product-item" onClick={onDetailClicked}>
       {renderOptional()}
       <img className="medium" src={images[0]} alt={name}></img>
-      <button type="button" className="empty" disabled={countInStock === 0}>
+      <button
+        type="button"
+        className="empty"
+        disabled={countInStock === 0}
+        onClick={(e) => onAddToCart(e)}
+      >
         ADD TO CART
       </button>
       <p className="name">{name}</p>

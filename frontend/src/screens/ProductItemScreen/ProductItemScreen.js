@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../actions/cartActions.js";
 import { detailProduct } from "../../actions/productActions.js";
 import LoadingBox from "../../components/LoadingBox.js";
 import MessageBox from "../../components/MessageBox.js";
@@ -26,6 +27,9 @@ export default function ProductItemScreen(props) {
 
   const onImageClicked = (e) => {
     setImageIndex(e.target.alt);
+  };
+  const onAddToCart = () => {
+    dispatch(addToCart(product, 1));
   };
 
   useEffect(() => {
@@ -92,6 +96,7 @@ export default function ProductItemScreen(props) {
             type="button"
             className="primary"
             disabled={countInStock === 0}
+            onClick={onAddToCart}
           >
             ADD TO CART
           </button>

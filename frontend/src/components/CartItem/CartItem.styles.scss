@@ -1,0 +1,62 @@
+.cart-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  img {
+    width: 25rem;
+  }
+  .col {
+    flex: 1 1 25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .head-title {
+      font-size: 2rem;
+      color: gray;
+    }
+  }
+  .delete-button {
+    cursor: pointer;
+    margin-right: 5rem;
+    position: relative;
+    bottom: 10rem;
+    color: #713434;
+    transition: 0.4s;
+  }
+  .delete-button:hover {
+    color: #a34b4b;
+  }
+  .qty-adder-container {
+    display: flex;
+    width: 50px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1.5rem 2rem;
+    .decrease,
+    .increase {
+      cursor: pointer;
+      margin: 0 2rem;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      vertical-align: center;
+      border-radius: 50%;
+      background-color: #713434;
+      color: white;
+      user-select: none;
+    }
+    .decrease:hover,
+    .increase:hover {
+      cursor: pointer;
+      margin: 0 2rem;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      vertical-align: center;
+      border-radius: 50%;
+      background-color: #a34b4b;
+      color: white;
+      user-select: none;
+    }
+  }
+}

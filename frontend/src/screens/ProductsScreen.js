@@ -22,6 +22,7 @@ export default function ProductsScreen(props) {
       return item.category.toLowerCase() === category;
     });
   }
+
   const renderItems = () => {
     if (loading) {
       return <LoadingBox />;
@@ -30,7 +31,9 @@ export default function ProductsScreen(props) {
       return <MessageBox varient="danger">{error}</MessageBox>;
     }
     const renderItems = items.map((item) => {
-      return <ProductItem key={item._id} data={item} history={props.history} />;
+      return (
+        <ProductItem key={item._id} product={item} history={props.history} />
+      );
     });
     return renderItems;
   };
