@@ -16,7 +16,8 @@ export const signIn = (email, password) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST });
   try {
     const data = await Axios.post("/api/users/signin", { email, password });
-    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data.data });
+    localStorage.setItem("userInfo", JSON.stringify(data.data));
   } catch (error) {
     dispatch({
       type: USER_SIGNIN_FAIL,
@@ -34,6 +35,7 @@ export const resgisterUser = (user) => async (dispatch) => {
     const data = await Axios.post("/api/users/register", user);
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
@@ -47,6 +49,9 @@ export const resgisterUser = (user) => async (dispatch) => {
 
 export const signOut = () => (dispatch) => {
   dispatch({ type: USER_SIGNOUT });
+  localStorage.removeItem("userInfo");
+  localStorage.removeItem("cartItems");
+  localStorage.removeItem("shippingAddress");
 };
 
 export const userDetails = (id) => async (dispatch) => {

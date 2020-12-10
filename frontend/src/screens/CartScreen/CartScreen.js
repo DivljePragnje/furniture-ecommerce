@@ -1,14 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CartItem from "../../components/CartItem/CartItem";
 import "./CartScreen.styles.scss";
 import { Link } from "react-router-dom";
-import { orderItems } from "../../actions/orderActions";
 
 export default function CartScreen(props) {
   const cartItems = useSelector((state) => state.cartItems);
   const userDetails = useSelector((state) => state.userDetails);
-  const dispatch = useDispatch();
   const renderCartItems = () => {
     return cartItems.map((item, index) => {
       return <CartItem key={index} item={item} />;
@@ -26,13 +24,9 @@ export default function CartScreen(props) {
 
   const onCheckout = () => {
     if (userDetails.userInfo) {
-      const order = {
-        userId: userDetails.userInfo.data._id,
-        orders: cartItems,
-      };
-      dispatch(orderItems(order));
+      props.history.push("/shipping");
     } else {
-      props.history.push("/signin");
+      props.history.push("/signin?redirect=shipping");
     }
   };
   return (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn, resgisterUser } from "../../actions/userActions";
+import _ from "lodash";
 import "./SignInScreen.styles.scss";
 
 export default function SignInScreen(props) {
@@ -31,12 +32,15 @@ export default function SignInScreen(props) {
 
     dispatch(resgisterUser({ name, email, password }));
   };
+  const redirect = props.location.search
+    ? props.location.search.split("=")[1]
+    : "/";
 
   useEffect(() => {
-    if (userInfo) {
-      props.history.push("/");
+    if (!_.isEmpty(userInfo)) {
+      props.history.push(redirect);
     }
-  }, [props.history, userInfo]);
+  }, [props.history, userInfo, redirect]);
 
   return (
     <div className="screen-container">

@@ -10,11 +10,10 @@ orderRouter.post(
     const order = new Order({
       userId: req.body.userId,
       orders: req.body.orders,
-      //shippingAddress: req.body.shippingAddress,
+      shippingAddress: req.body.shippingAddress,
     });
     const ordered = await order.save();
     if (ordered) {
-      console.log(ordered);
       res.send(ordered);
     }
   })

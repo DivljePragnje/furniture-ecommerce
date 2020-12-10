@@ -10,18 +10,20 @@ const singleOrderSchema = new mongoose.Schema({
 });
 
 const shippingAddressSchema = new mongoose.Schema({
-  fullName: { type: String, required: true },
+  name: { type: String, required: true },
+  surname: { type: String, required: true },
   address: { type: String, required: true },
+  mobileNumber: { type: String, required: true },
   city: { type: String, required: true },
   postalCode: { type: String, required: true },
-  country: { type: String, required: true },
+  city: { type: String, required: true },
 });
 
 const orderSchema = mongoose.Schema(
   {
     userId: { type: String, required: true },
     orders: [singleOrderSchema],
-    //shippingAddress: shippingAddressSchema,
+    shippingAddress: shippingAddressSchema,
   },
   {
     timestamps: true,
