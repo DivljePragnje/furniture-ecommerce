@@ -5,22 +5,24 @@ import "./CartItem.styles.scss";
 
 export default function CartItem(props) {
   const { item } = props;
-  const { images, name, price, materials, onDiscount } = item.product;
+  const { image, name, price, material, onDiscount, qty } = item;
   const dispatch = useDispatch();
 
-  const removeItemFromCart = (qty) => {
-    dispatch(removeFromCart(item.product, qty));
+  const removeItemFromCart = (q) => {
+    const cartItem = { ...item, qty: q };
+    dispatch(removeFromCart(cartItem));
   };
 
   const addItemToCart = () => {
-    dispatch(addToCart(item.product, 1));
+    const cartItem = { ...item, qty: 1 };
+    dispatch(addToCart(cartItem));
   };
   return (
     <div>
       <hr />
 
       <div className="cart-item-container">
-        <img src={images[0]} alt={item.name} />
+        <img src={image} alt={item.name} />
         <div className="col">
           <p className="head-title">Name:</p>
           <p>{name}</p>
@@ -31,7 +33,7 @@ export default function CartItem(props) {
         </div>
         <div className="col">
           <p className="head-title">Material:</p>
-          <p>{materials[0]}</p>
+          <p>{material}</p>
         </div>
         <div className="col">
           <p className="head-title">Quantity:</p>
@@ -39,7 +41,7 @@ export default function CartItem(props) {
             <div className="decrease" onClick={(e) => removeItemFromCart(1)}>
               -
             </div>
-            <div>{item.qty}</div>
+            <div>{qty}</div>
             <div className="increase" onClick={(e) => addItemToCart(1)}>
               +
             </div>
@@ -48,11 +50,11 @@ export default function CartItem(props) {
 
         <div className="col">
           <p className="head-title">Total:</p>
-          <p>$ {item.qty * (price - price * onDiscount).toFixed(2)}</p>
+          <p>$ {qty * (price - price * onDiscount).toFixed(2)}</p>
         </div>
         <i
           className="fa fa-trash fa-2x delete-button"
-          onClick={(e) => removeItemFromCart(item.qty)}
+          onClick={(e) => removeItemFromCart(qty)}
         ></i>
       </div>
     </div>

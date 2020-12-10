@@ -12,6 +12,7 @@ export default function ProductItemScreen(props) {
   const productDetail = useSelector((state) => state.productDetail);
   const { loading, error, product } = productDetail;
   const {
+    _id,
     name,
     images,
     materials,
@@ -24,12 +25,37 @@ export default function ProductItemScreen(props) {
   const dispatch = useDispatch();
 
   const [imageIndex, setImageIndex] = useState(0);
+  const [material, setMaterial] = useState(materials[0]);
 
   const onImageClicked = (e) => {
     setImageIndex(e.target.alt);
   };
   const onAddToCart = () => {
-    dispatch(addToCart(product, 1));
+    //TODO: Budz, ne mogu da sredim dropdown da se inicijalno racuna
+    let cartItem = {};
+    if (typeof material === "undefined") {
+      cartItem = {
+        _id: _id,
+        name: name,
+        image: images[0],
+        material: materials[0],
+        price: price,
+        onDiscount: onDiscount,
+        qty: 1,
+      };
+    } else {
+      cartItem = {
+        _id: _id,
+        name: name,
+        image: images[0],
+        material: material,
+        price: price,
+        onDiscount: onDiscount,
+        qty: 1,
+      };
+    }
+
+    dispatch(addToCart(cartItem));
   };
 
   useEffect(() => {
@@ -52,10 +78,10 @@ export default function ProductItemScreen(props) {
   };
 
   const renderOption = () => {
-    return materials.map((material, index) => {
+    return materials.map((m, index) => {
       return (
-        <option key={index} value={`${material}`}>
-          {material}
+        <option key={index} value={`${m}`}>
+          {m}
         </option>
       );
     });
@@ -86,7 +112,12 @@ export default function ProductItemScreen(props) {
           <div className="select">
             <label forhtml="materials">Material:</label>
 
-            <select name="materials" id="materials">
+            <select
+              name="materials"
+              id="materials"
+              value={material}
+              onChange={(e) => setMaterial(e.target.value)}
+            >
               {renderOption()}
             </select>
           </div>

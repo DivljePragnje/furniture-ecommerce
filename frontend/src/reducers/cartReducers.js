@@ -4,12 +4,16 @@ export const cartListReducers = (state = [], action) => {
   switch (action.type) {
     case ADD_TO_CART:
       itemExists = state.find(
-        (el) => el.product._id === action.payload.product._id
+        (el) =>
+          el._id === action.payload._id &&
+          el.material === action.payload.material
       );
       if (itemExists) {
         itemExists.qty += action.payload.qty;
         return state.map((e) =>
-          e.product === action.payload.product ? itemExists : e
+          e._id === action.payload._id && e.material === action.payload.material
+            ? itemExists
+            : e
         );
       } else {
         return [...state, action.payload];
@@ -17,17 +21,28 @@ export const cartListReducers = (state = [], action) => {
 
     case REMOVE_FROM_CART:
       itemExists = state.find(
-        (el) => el.product._id === action.payload.product._id
+        (el) =>
+          el._id === action.payload._id &&
+          el.material === action.payload.material
       );
       if (itemExists) {
         itemExists.qty -= action.payload.qty;
         if (itemExists.qty <= 0) {
-          return state.filter(
-            (item) => item.product !== action.payload.product
-          );
+          return state.filter((item) => {
+            if (
+              item.material === action.payload.material &&
+              item._id === action.payload._id
+            ) {
+              return false;
+            }
+            return true;
+          });
         } else {
           return state.map((e) =>
-            e.product === action.payload.product ? itemExists : e
+            e._id === action.payload._id &&
+            e.material === action.payload.material
+              ? itemExists
+              : e
           );
         }
       }

@@ -5,12 +5,29 @@ import PriceBox from "./PriceBox";
 
 export default function ProductItem(props) {
   const { product } = props;
-  const { _id, images, name, price, countInStock, onDiscount } = product;
+  const {
+    _id,
+    images,
+    name,
+    price,
+    countInStock,
+    onDiscount,
+    materials,
+  } = product;
   const dispatch = useDispatch();
 
   const onAddToCart = (e) => {
     e.stopPropagation();
-    dispatch(addToCart(product, 1));
+    const cartItem = {
+      _id: _id,
+      name: name,
+      image: images[0],
+      material: materials[0],
+      price: price,
+      onDiscount: onDiscount,
+      qty: 1,
+    };
+    dispatch(addToCart(cartItem));
   };
 
   const renderOptional = () => {

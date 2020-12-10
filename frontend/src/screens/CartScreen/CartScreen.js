@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 export default function CartScreen(props) {
   const cartItems = useSelector((state) => state.cartItems);
   const renderCartItems = () => {
-    return cartItems.map((item) => {
-      return <CartItem key={item.product._id} item={item} />;
+    return cartItems.map((item, index) => {
+      return <CartItem key={index} item={item} />;
     });
   };
 
@@ -16,9 +16,7 @@ export default function CartScreen(props) {
     let totalPrice = 0;
     cartItems.forEach((element) => {
       totalPrice +=
-        (element.product.price -
-          element.product.price * element.product.onDiscount) *
-        element.qty;
+        (element.price - element.price * element.onDiscount) * element.qty;
     });
     return `$ ${totalPrice.toFixed(2)}`;
   };
