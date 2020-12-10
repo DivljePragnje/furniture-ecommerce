@@ -4,6 +4,7 @@ import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import expressAsyncHanlder from "express-async-handler";
 import { generateToken } from "../utils.js";
+import expressAsyncHandler from "express-async-handler";
 
 const userRouter = express.Router();
 
@@ -12,6 +13,18 @@ userRouter.get(
   expressAsyncHanlder(async (req, res) => {
     const createdUsers = await User.insertMany(data.users);
     res.send({ createdUsers });
+  })
+);
+
+userRouter.get(
+  "/:id",
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+      res.send(user);
+    } else {
+      res.status(404).send({ message: "User Not Found" });
+    }
   })
 );
 
@@ -43,7 +56,7 @@ userRouter.post(
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
     });
-
+    //TODO: Proveri ovaj data, majke ti
     user
       .save()
       .then(() =>

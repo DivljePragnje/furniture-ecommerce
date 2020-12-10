@@ -1,11 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../../components/CartItem/CartItem";
 import "./CartScreen.styles.scss";
 import { Link } from "react-router-dom";
+import { orderItems } from "../../actions/orderActions";
 
 export default function CartScreen(props) {
   const cartItems = useSelector((state) => state.cartItems);
+  const userDetails = useSelector((state) => state.userDetails);
+  const dispatch = useDispatch();
   const renderCartItems = () => {
     return cartItems.map((item, index) => {
       return <CartItem key={index} item={item} />;
@@ -19,6 +22,18 @@ export default function CartScreen(props) {
         (element.price - element.price * element.onDiscount) * element.qty;
     });
     return `$ ${totalPrice.toFixed(2)}`;
+  };
+
+  const onCheckout = () => {
+    if (userDetails.userInfo) {
+      const order = {
+        userId: userDetails.userInfo.data._id,
+        orders: cartItems,
+      };
+      dispatch(orderItems(order));
+    } else {
+      props.history.push("/signin");
+    }
   };
   return (
     <div>
@@ -40,7 +55,9 @@ export default function CartScreen(props) {
           {renderCartItems()} <hr />
           <div className="subtotal-container">
             <h2>Subtotal: {calculateItemsPrice()}</h2>
-            <button className="checkout-button">CHECKOUT</button>
+            <button className="checkout-button" onClick={onCheckout}>
+              CHECKOUT
+            </button>
           </div>
         </div>
       )}

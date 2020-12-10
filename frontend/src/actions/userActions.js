@@ -7,6 +7,9 @@ import {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
   USER_SIGNOUT,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAIL,
 } from "../constants/userConstants";
 
 export const signIn = (email, password) => async (dispatch) => {
@@ -44,4 +47,20 @@ export const resgisterUser = (user) => async (dispatch) => {
 
 export const signOut = () => (dispatch) => {
   dispatch({ type: USER_SIGNOUT });
+};
+
+export const userDetails = (id) => async (dispatch) => {
+  dispatch({ type: USER_DETAILS_REQUEST });
+  try {
+    const data = await Axios.get(`/${id}`);
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: USER_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };
