@@ -50,4 +50,29 @@ productRouter.put(
   })
 );
 
+productRouter.put(
+  "/addrating/:id",
+  expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      const ratingFound = product.ratings.find((rating, index) => {
+        if (rating.userId === req.body.rating.userId) {
+          product.ratings[index].rating = req.body.rating.rating;
+          product.ratings.splice(index, 1, rating);
+        }
+        return true;
+      });
+      if (!ratingFound) {
+        product.ratings = [...product.ratings, req.body.rating];
+      }
+      const response = await product.save();
+      if (response) {
+        res.send(response);
+      }
+    } else {
+      res.status(404).send({ message: "Product Not Found" });
+    }
+  })
+);
+
 export default productRouter;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ReviewForm.styles.scss";
 import _ from "lodash";
 import { Link } from "react-router-dom";
-import { addingReview } from "../../actions/productActions";
+import { addReview } from "../../actions/productActions";
 export default function ReviewForm(props) {
   const userDetails = useSelector((state) => state.userDetails);
   const { userInfo } = userDetails;
@@ -12,11 +12,11 @@ export default function ReviewForm(props) {
 
   const submitReview = () => {
     dispatch(
-      addingReview(props.productId, {
+      addReview(props.productId, {
         review: {
-          name: userInfo.name,
+          userId: userInfo._id,
+          userName: userInfo.name,
           comment: comment,
-          rating: 5,
         },
       })
     );

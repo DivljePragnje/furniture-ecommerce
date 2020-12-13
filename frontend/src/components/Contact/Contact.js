@@ -5,13 +5,9 @@ import "./Contact.styles.scss";
 export default function Contact() {
   const handleNewsletter = async (e) => {
     e.preventDefault();
-    console.log(email);
     try {
-      const response = await Axios.post("/api/newsletters/", { email });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+      await Axios.post("/api/newsletters/", { email });
+    } catch (error) {}
   };
   const [email, setEmail] = useState("");
 

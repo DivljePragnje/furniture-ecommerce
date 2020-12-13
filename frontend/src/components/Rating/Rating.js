@@ -1,16 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Rating.styles.scss";
-
+import { useDispatch, useSelector } from "react-redux";
+import _ from "lodash";
+import { addRating } from "../../actions/productActions";
 const stars = [1, 2, 3, 4, 5];
 
 function Rating(props) {
-  let rating =
-    props.reviews.reduce((a, c) => a + c.rating, 0) / props.reviews.length;
-  const numReviews = props.reviews.length;
+  const userDetails = useSelector((state) => state.userDetails);
+  const productDetail = useSelector((state) => state.productDetail);
+  const { userInfo } = userDetails;
+  const { reviews, ratings, _id } = productDetail.product;
+
+  const dispatch = useDispatch();
+  let rating = ratings.reduce((a, c) => a + c.rating, 0) / ratings.length;
+  const numReviews = reviews.length;
 
   const [index, setIndex] = useState(rating);
+
   const onHoverStar = (e) => {
     setIndex(e.target.dataset.value);
+  };
+  const onUnhoverStar = (e) => {
+    setIndex(rating);
+  };
+
+  const onRatingClicked = (e) => {
+    if (_.isEmpty(userInfo)) {
+      window.alert("You must be logged in to rate this product!");
+    } else {
+      dispatch(
+        addRating(_id, {
+          rating: {
+            userId: userInfo._id,
+            rating: index,
+          },
+        })
+      );
+    }
   };
 
   const renderStars = () => {
@@ -21,6 +47,8 @@ function Rating(props) {
             data-value={elem}
             className={elem <= index ? "fa fa-star" : "fa fa-star-o"}
             onMouseOver={(e) => onHoverStar(e)}
+            onMouseLeave={onUnhoverStar}
+            onClick={(e) => onRatingClicked(e)}
           ></i>
         </span>
       );
@@ -32,69 +60,6 @@ function Rating(props) {
       <span>{numReviews + " reviews"}</span>
     </div>
   );
-  /*let rating =
-    props.reviews.reduce((a, c) => a + c.rating, 0) / props.reviews.length;
-  const numReviews = props.reviews.length;
-  return (
-    <div className="rating">
-      <span>
-        <i
-          className={
-            rating >= 1
-              ? "fa fa-star"
-              : rating >= 0.5
-              ? "fa fa-star-half-o"
-              : "fa fa-start-o"
-          }
-        ></i>
-      </span>
-      <span>
-        <i
-          className={
-            rating >= 2
-              ? "fa fa-star"
-              : rating >= 1.5
-              ? "fa fa-star-half-o"
-              : "fa fa-start-o"
-          }
-        ></i>
-      </span>
-      <span>
-        <i
-          className={
-            rating >= 3
-              ? "fa fa-star"
-              : rating >= 2.5
-              ? "fa fa-star-half-o"
-              : "fa fa-start-o"
-          }
-        ></i>
-      </span>
-      <span>
-        <i
-          className={
-            rating >= 4
-              ? "fa fa-star"
-              : rating >= 3.5
-              ? "fa fa-star-half-o"
-              : "fa fa-start-o"
-          }
-        ></i>
-      </span>
-      <span>
-        <i
-          className={
-            rating >= 5
-              ? "fa fa-star"
-              : rating >= 4.5
-              ? "fa fa-star-half-o"
-              : "fa fa-start-o"
-          }
-        ></i>
-      </span>
-      <span>{numReviews + " reviews"}</span>
-    </div>
-  );*/
 }
 
 export default Rating;

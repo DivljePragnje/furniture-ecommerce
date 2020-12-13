@@ -6,9 +6,10 @@ import {
   PRODUCT_DETAIL_REQUEST,
   PRODUCT_DETAIL_SUCCESS,
   PRODUCT_DETAIL_FAIL,
-  PRODUCT_ADDING_REVIEW_REQUEST,
   PRODUCT_ADDING_REVIEW_SUCCESS,
   PRODUCT_ADDING_REVIEW_FAIL,
+  PRODUCT_ADDING_RATING_SUCCESS,
+  PRODUCT_ADDING_RATING_FAIL,
 } from "../constants/productConstants";
 
 export const listProducts = () => async (dispatch) => {
@@ -35,14 +36,21 @@ export const detailProduct = (id) => async (dispatch) => {
   }
 };
 
-export const addingReview = (id, review) => async (dispatch) => {
-  dispatch({
-    type: PRODUCT_ADDING_REVIEW_REQUEST,
-  });
+export const addReview = (id, review) => async (dispatch) => {
   try {
     const { data } = await Axios.put(`/api/products/addreview/${id}`, review);
     dispatch({ type: PRODUCT_ADDING_REVIEW_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_ADDING_REVIEW_FAIL, payload: error.message });
+  }
+};
+
+export const addRating = (id, rating) => async (dispatch) => {
+  try {
+    const { data } = await Axios.put(`/api/products/addrating/${id}`, rating);
+
+    dispatch({ type: PRODUCT_ADDING_RATING_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: PRODUCT_ADDING_RATING_FAIL, payload: error.message });
   }
 };
