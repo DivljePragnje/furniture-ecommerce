@@ -34,4 +34,20 @@ productRouter.get(
   })
 );
 
+productRouter.put(
+  "/addreview/:id",
+  expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      product.reviews = [...product.reviews, req.body.review];
+      const response = await product.save();
+      if (response) {
+        res.send(response);
+      }
+    } else {
+      res.status(404).send({ message: "Product Not Found" });
+    }
+  })
+);
+
 export default productRouter;

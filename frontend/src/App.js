@@ -2,14 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { signOut } from "./actions/userActions";
 import CartScreen from "./screens/CartScreen/CartScreen";
-import HomeScreen from "./screens/HomeScreen";
+import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import Placeorder from "./screens/Placeorder/Placeorder";
 import ProductItemScreen from "./screens/ProductItemScreen/ProductItemScreen";
 import ProductsScreen from "./screens/ProductsScreen";
 import ShippingScreen from "./screens/ShippingScreen/ShippingScreen";
 import SignInScreen from "./screens/SigninScreen/SignInScreen";
 import _ from "lodash";
-
+import ConfirmationScreen from "./screens/ConfirmationScreen/ConfirmationScreen";
+import Contact from "./components/Contact/Contact";
 function App() {
   const userDetails = useSelector((state) => state.userDetails);
   const cartItems = useSelector((state) => state.cartItems);
@@ -73,6 +74,7 @@ function App() {
             component={ProductsScreen}
             exact
           />
+          <Route path="/confirmation" component={ConfirmationScreen} />
           <Route path="/placeorder" component={Placeorder} />
           <Route path="/shipping" component={ShippingScreen} />
           <Route path="/cart" component={CartScreen} />
@@ -80,7 +82,10 @@ function App() {
           <Route path="/product/:id" component={ProductItemScreen} />
           <Route path="/" component={HomeScreen} exact />
         </main>
-        <footer>© 2020. All rights reserved by Divlje Pragnje</footer>
+
+        <footer>
+          <Contact />© 2020. All rights reserved by Divlje Pragnje
+        </footer>
       </div>
     </Router>
   );

@@ -50,7 +50,7 @@ export default function CartItem(props) {
 
         <div className="col">
           <p className="head-title">Total:</p>
-          <p>$ {qty * (price - price * onDiscount).toFixed(2)}</p>
+          <p>$ {(qty * (price - price * onDiscount)).toFixed(2)}</p>
         </div>
         <i
           className="fa fa-trash fa-2x delete-button"

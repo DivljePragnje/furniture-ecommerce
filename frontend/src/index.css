@@ -20,6 +20,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+textarea,
+input,
+button,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 .grid-container {
   display: grid;
   grid-template-areas:
@@ -27,7 +35,7 @@ body {
     "main"
     "footer";
   grid-template-columns: 1fr;
-  grid-template-rows: 10rem 1fr 5rem;
+  grid-template-rows: 10rem 1fr 33rem;
   height: 100vh;
 }
 
@@ -43,8 +51,7 @@ main {
 
 footer {
   grid-area: footer;
-  background-color: #713434;
-  color: #ffffff;
+  color: #707070;
   text-align: center;
   line-height: 5rem;
   min-height: 50px;
@@ -175,15 +182,6 @@ img.medium {
 img.large {
   max-width: 70rem;
   width: 100%;
-}
-
-.rating span {
-  color: #f0c040;
-  margin: 0.1rem;
-}
-
-.rating span:last-child {
-  color: #404040;
 }
 
 /* PRODUCT */

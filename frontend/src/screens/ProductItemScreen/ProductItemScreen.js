@@ -5,7 +5,8 @@ import { detailProduct } from "../../actions/productActions.js";
 import LoadingBox from "../../components/LoadingBox.js";
 import MessageBox from "../../components/MessageBox.js";
 import PriceBox from "../../components/PriceBox.js";
-import Rating from "../../components/Rating.js";
+import Rating from "../../components/Rating/Rating.js";
+import ReviewsSection from "../../components/ReviewsSection/ReviewsSection.js";
 import "./ProductItemScreen.styles.scss";
 
 export default function ProductItemScreen(props) {
@@ -131,6 +132,7 @@ export default function ProductItemScreen(props) {
           >
             ADD TO CART
           </button>
+          <ReviewsSection productId={props.match.params.id} reviews={reviews} />
         </div>
       </div>
     </div>

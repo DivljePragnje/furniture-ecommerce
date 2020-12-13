@@ -1,4 +1,8 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../constants/cartConstants";
+import {
+  ADD_TO_CART,
+  EMPTY_CART,
+  REMOVE_FROM_CART,
+} from "../constants/cartConstants";
 export const cartListReducers = (state = [], action) => {
   let itemExists = {};
   switch (action.type) {
@@ -47,6 +51,8 @@ export const cartListReducers = (state = [], action) => {
         }
       }
       return state;
+    case EMPTY_CART:
+      return [];
     default:
       return state;
   }

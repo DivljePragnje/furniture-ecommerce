@@ -34,7 +34,7 @@ export const data = {
         {
           name: "Jovana1",
           comment: "Stolica je super, sve pohvale",
-          rating: 4.8,
+          rating: 4,
         },
         {
           name: "Tamara",
@@ -42,6 +42,7 @@ export const data = {
           rating: 3,
         },
       ],
+      ratings: [4, 3],
     },
     {
       name: "Afteroom Lounge Chair",
@@ -69,6 +70,7 @@ export const data = {
           rating: 3,
         },
       ],
+      ratings: [4, 3],
     },
     {
       name: "Armchair 30",
@@ -96,6 +98,7 @@ export const data = {
           rating: 3,
         },
       ],
+      ratings: [4, 3],
     },
     {
       name: "Facile Bench",
@@ -123,6 +126,7 @@ export const data = {
           rating: 3,
         },
       ],
+      ratings: [4, 3],
     },
     {
       name: "Albert Bench",
@@ -150,6 +154,7 @@ export const data = {
           rating: 3,
         },
       ],
+      ratings: [4, 3],
     },
     {
       name: "Afteroom Bench",
@@ -176,6 +181,7 @@ export const data = {
           rating: 3,
         },
       ],
+      ratings: [4, 3],
     },
   ],
 };

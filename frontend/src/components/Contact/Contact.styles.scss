@@ -1,0 +1,82 @@
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+
+  .social-container {
+    color: #707070;
+    max-width: 80rem;
+    width: 100%;
+    border-right: 1px solid #eeeeee;
+    padding: 7rem 0;
+    .social {
+      position: relative;
+
+      text-align: center;
+      i {
+        cursor: pointer;
+        margin: 0 1rem;
+        color: #713434;
+      }
+      i:hover {
+        color: #a34b4b;
+      }
+    }
+  }
+  .newsletter-container {
+    color: #707070;
+    max-width: 80rem;
+    width: 100%;
+    padding: 7rem 0;
+    .newsletter {
+      text-align: center;
+      form {
+        position: relative;
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 50px;
+        height: 100%;
+        text-align: center;
+
+        input {
+          background-color: #eee;
+          border: none;
+          padding: 12px 15px;
+          width: 100%;
+          flex: 4 1 25rem;
+        }
+        button {
+          flex: 1 1 14rem;
+          cursor: pointer;
+          width: 100%;
+          color: #ffffff;
+          background-color: #713434;
+          padding: 1rem;
+          transition: 0.4s;
+        }
+        button:active {
+          transform: scale(0.95);
+        }
+
+        button:hover {
+          cursor: pointer;
+          width: 100%;
+          bottom: 12rem;
+          right: 0px;
+          color: #ffffff;
+          border-color: #a34b4b;
+          padding: 1rem;
+          background-color: #a34b4b;
+        }
+        button:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}

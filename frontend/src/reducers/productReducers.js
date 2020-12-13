@@ -5,6 +5,9 @@ const {
   PRODUCT_DETAIL_REQUEST,
   PRODUCT_DETAIL_SUCCESS,
   PRODUCT_DETAIL_FAIL,
+  PRODUCT_ADDING_REVIEW_FAIL,
+  PRODUCT_ADDING_REVIEW_REQUEST,
+  PRODUCT_ADDING_REVIEW_SUCCESS,
 } = require("../constants/productConstants");
 
 export const productListReducer = (
@@ -39,6 +42,25 @@ export const productDetailReducer = (
     case PRODUCT_DETAIL_SUCCESS:
       return { loading: false, product: action.payload };
     case PRODUCT_DETAIL_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const productAddingReviewReducer = (
+  state = {
+    loading: true,
+    review: {},
+  },
+  action
+) => {
+  switch (action.type) {
+    case PRODUCT_ADDING_REVIEW_REQUEST:
+      return { loading: true, review: {} };
+    case PRODUCT_ADDING_REVIEW_SUCCESS:
+      return { loading: false, review: action.payload };
+    case PRODUCT_ADDING_REVIEW_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

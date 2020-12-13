@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CheckoutSteps from "../../components/CheckoutSteps/CheckoutSteps";
 import { useDispatch, useSelector } from "react-redux";
 import { addShippingAddress } from "../../actions/orderActions";
+import _ from "lodash";
 import "./ShippingScreen.styles.scss";
 export default function ShippingScreen(props) {
   const [name, setName] = useState("");
@@ -12,9 +13,14 @@ export default function ShippingScreen(props) {
   const [city, setCity] = useState("");
 
   const userDetails = useSelector((state) => state.userDetails);
+  const cartItems = useSelector((state) => state.cartItems);
 
-  if (!userDetails.userInfo) {
+  if (_.isEmpty(userDetails.userInfo)) {
     props.history.push("/signin");
+  } else {
+    if (cartItems.length === 0) {
+      props.history.push("/collection/all");
+    }
   }
 
   const dispatch = useDispatch();

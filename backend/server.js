@@ -6,6 +6,7 @@ import userRouter from "./routers/userRouter.js";
 import dotenv from "dotenv";
 import productRouter from "./routers/productRouter.js";
 import orderRouter from "./routers/orderRouter.js";
+import newsletterRouter from "./routers/newsletterRouter.js";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/newsletters", newsletterRouter);
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });

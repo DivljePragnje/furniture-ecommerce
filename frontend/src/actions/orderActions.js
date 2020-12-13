@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { EMPTY_CART } from "../constants/cartConstants";
 import {
   ORDER_FAIL,
   ORDER_REQUST,
@@ -11,7 +12,9 @@ export const orderItems = (order) => async (dispatch) => {
   try {
     const response = await Axios.post("/api/orders/", order);
     dispatch({ type: ORDER_SUCCESS, payload: response.data });
+    dispatch({ type: EMPTY_CART });
     localStorage.removeItem("cartItems");
+    localStorage.removeItem("shippingAddress");
   } catch (error) {
     dispatch({
       type: ORDER_FAIL,
