@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import productRouter from "./routers/productRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 import newsletterRouter from "./routers/newsletterRouter.js";
+import nodemailer from "nodemailer";
 
 dotenv.config();
 

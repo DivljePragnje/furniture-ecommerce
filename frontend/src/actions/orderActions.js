@@ -10,7 +10,9 @@ import {
 export const orderItems = (order) => async (dispatch) => {
   dispatch({ type: ORDER_REQUST });
   try {
-    const response = await Axios.post("/api/orders/", order);
+    const response = await Axios.post("/api/orders/", order, {
+      headers: { Authorization: `Bearer ${order.userInfo.token}` },
+    });
     dispatch({ type: ORDER_SUCCESS, payload: response.data });
     dispatch({ type: EMPTY_CART });
     localStorage.removeItem("cartItems");

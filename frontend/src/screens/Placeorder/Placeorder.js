@@ -71,7 +71,7 @@ export default function Placeorder(props) {
 
   const onPlaceOrder = () => {
     const order = {
-      userId: userDetails.userInfo._id,
+      userInfo: userDetails.userInfo,
       orders: cartItems,
       shippingAddress: shippingAddress,
     };

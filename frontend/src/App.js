@@ -11,6 +11,7 @@ import SignInScreen from "./screens/SigninScreen/SignInScreen";
 import _ from "lodash";
 import ConfirmationScreen from "./screens/ConfirmationScreen/ConfirmationScreen";
 import Contact from "./components/Contact/Contact";
+import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 function App() {
   const userDetails = useSelector((state) => state.userDetails);
   const cartItems = useSelector((state) => state.cartItems);
@@ -60,6 +61,9 @@ function App() {
                   <i className="fa fa-caret-down"></i>
                 </div>
                 <div className="dropdown-content right">
+                  <Link className="navlink" to="/profile">
+                    Profile
+                  </Link>
                   <Link className="navlink" to="#signout" onClick={onSignOut}>
                     Sign Out
                   </Link>
@@ -79,6 +83,7 @@ function App() {
           <Route path="/shipping" component={ShippingScreen} />
           <Route path="/cart" component={CartScreen} />
           <Route path="/signin" component={SignInScreen} />
+          <Route path="/profile" component={ProfileScreen} />
           <Route path="/product/:id" component={ProductItemScreen} />
           <Route path="/" component={HomeScreen} exact />
         </main>
