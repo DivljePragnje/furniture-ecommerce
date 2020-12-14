@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/furniture-ecommerce/static/css/main.ce065219.chunk.css",
+    "main.js": "/furniture-ecommerce/static/js/main.a1212dfa.chunk.js",
+    "main.js.map": "/furniture-ecommerce/static/js/main.a1212dfa.chunk.js.map",
+    "runtime-main.js": "/furniture-ecommerce/static/js/runtime-main.5a820fea.js",
+    "runtime-main.js.map": "/furniture-ecommerce/static/js/runtime-main.5a820fea.js.map",
+    "static/js/2.b86499e3.chunk.js": "/furniture-ecommerce/static/js/2.b86499e3.chunk.js",
+    "static/js/2.b86499e3.chunk.js.map": "/furniture-ecommerce/static/js/2.b86499e3.chunk.js.map",
+    "index.html": "/furniture-ecommerce/index.html",
+    "static/css/main.ce065219.chunk.css.map": "/furniture-ecommerce/static/css/main.ce065219.chunk.css.map",
+    "static/js/2.b86499e3.chunk.js.LICENSE.txt": "/furniture-ecommerce/static/js/2.b86499e3.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5a820fea.js",
+    "static/js/2.b86499e3.chunk.js",
+    "static/css/main.ce065219.chunk.css",
+    "static/js/main.a1212dfa.chunk.js"
+  ]
+}
