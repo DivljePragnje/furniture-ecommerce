@@ -1,4 +1,5 @@
 {
+  
   "name": "furniture-ecommerce",
   "type": "module",
   "version": "1.0.0",
@@ -13,13 +14,16 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.4",
     "mongoose-map": "^1.1.0",
-    "nodemailer": "^6.4.17"
+    "nodemailer": "^6.4.17",
+    "react-scripts": "^4.0.1"
   },
   "devDependencies": {
+    "gh-pages": "^3.1.0",
     "nodemon": "^2.0.6"
   },
   "scripts": {
     "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
+
   },
   "repository": {
     "type": "git",
@@ -29,6 +33,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DivljePragnje/furniture-ecommerce/issues"
-  },
-  "homepage": "https://github.com/DivljePragnje/furniture-ecommerce#readme"
+  }
 }
