@@ -25,6 +25,7 @@ mongoose.connect(
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path_join(__dirname, "../frontend/build")));
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
