@@ -1,5 +1,5 @@
 {
-  "homepage": "https://divljepragnje.github.io/furniture-ecommerce/",
+  "homepage": "https://myapp.herokuapp.com/",
   "name": "frontend",
   "proxy": "http://127.0.0.1:5000",
   "version": "0.1.0",
