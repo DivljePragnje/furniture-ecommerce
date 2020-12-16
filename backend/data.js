@@ -30,19 +30,8 @@ export const data = {
       countInStock: 3,
       materials: ["Oak", "Mahogany", "Ash", "Maple", "Walnut"],
       onDiscount: 0.1,
-      reviews: [
-        {
-          name: "Jovana1",
-          comment: "Stolica je super, sve pohvale",
-          rating: 4,
-        },
-        {
-          name: "Tamara",
-          comment: "Trazio sam mahagoniju, dobio sam hrast",
-          rating: 3,
-        },
-      ],
-      ratings: [4, 3],
+      reviews: [],
+      ratings: [],
     },
     {
       name: "Afteroom Lounge Chair",
@@ -58,19 +47,8 @@ export const data = {
       countInStock: 0,
       materials: ["Oak", "Mahogany", "Ash", "Maple", "Walnut"],
       onDiscount: 0,
-      reviews: [
-        {
-          name: "Jovana",
-          comment: "Stolica je super, sve pohvale",
-          rating: 4.8,
-        },
-        {
-          name: "Tamara",
-          comment: "Trazio sam mahagoniju, dobio sam hrast",
-          rating: 3,
-        },
-      ],
-      ratings: [4, 3],
+      reviews: [],
+      ratings: [],
     },
     {
       name: "Armchair 30",
@@ -86,19 +64,8 @@ export const data = {
       countInStock: 150,
       materials: ["Oak", "Mahogany", "Ash", "Maple", "Walnut"],
       onDiscount: 0,
-      reviews: [
-        {
-          name: "Jovana",
-          comment: "Stolica je super, sve pohvale",
-          rating: 4.8,
-        },
-        {
-          name: "Tamara",
-          comment: "Trazio sam mahagoniju, dobio sam hrast",
-          rating: 3,
-        },
-      ],
-      ratings: [4, 3],
+      reviews: [],
+      ratings: [],
     },
     {
       name: "Facile Bench",
@@ -114,19 +81,8 @@ export const data = {
       countInStock: 80,
       materials: ["Oak", "Mahogany", "Ash", "Maple", "Walnut"],
       onDiscount: 0.05,
-      reviews: [
-        {
-          name: "Jovana",
-          comment: "Stolica je super, sve pohvale",
-          rating: 4.8,
-        },
-        {
-          name: "Tamara",
-          comment: "Trazio sam mahagoniju, dobio sam hrast",
-          rating: 3,
-        },
-      ],
-      ratings: [4, 3],
+      reviews: [],
+      ratings: [],
     },
     {
       name: "Albert Bench",
@@ -142,19 +98,8 @@ export const data = {
       countInStock: 54,
       materials: ["Oak", "Mahogany", "Ash", "Maple", "Walnut"],
       onDiscount: 0,
-      reviews: [
-        {
-          name: "Jovana",
-          comment: "Stolica je super, sve pohvale",
-          rating: 4.8,
-        },
-        {
-          name: "Tamara",
-          comment: "Trazio sam mahagoniju, dobio sam hrast",
-          rating: 3,
-        },
-      ],
-      ratings: [4, 3],
+      reviews: [],
+      ratings: [],
     },
     {
       name: "Afteroom Bench",
@@ -169,19 +114,8 @@ export const data = {
       countInStock: 0,
       materials: ["Oak", "Mahogany", "Ash", "Maple", "Walnut"],
       onDiscount: 0,
-      reviews: [
-        {
-          name: "Jovana",
-          comment: "Stolica je super, sve pohvale",
-          rating: 4.8,
-        },
-        {
-          name: "Tamara",
-          comment: "Trazio sam mahagoniju, dobio sam hrast",
-          rating: 3,
-        },
-      ],
-      ratings: [4, 3],
+      reviews: [],
+      ratings: [],
     },
   ],
 };
