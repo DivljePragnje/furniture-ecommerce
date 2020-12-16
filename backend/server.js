@@ -15,11 +15,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 5000;
 
-mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/amazona", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+mongoose.connect(
+  process.env.MONGODB_URL || "mongodb://localhost/furniture-ecommerce",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  }
+);
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
@@ -34,10 +37,6 @@ app.get("*", (req, res) =>
 );
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
-});
-
-app.get("/api/products", (req, res) => {
-  res.send(data.products);
 });
 
 app.listen(port, () => {
