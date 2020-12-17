@@ -4,17 +4,20 @@
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+  max-width: 1500px;
+
   position: relative;
   margin: auto;
   img {
     width: 100%;
-    height: 50rem;
+    height: 70rem;
     object-fit: cover;
   }
 }
 
 .bullets {
+  position: relative;
+  top: 7.5rem;
   text-align: center;
 }
 
@@ -31,7 +34,7 @@
 .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 35rem;
   width: auto;
   margin-top: -22px;
   padding: 16px;
@@ -59,7 +62,7 @@
   height: 15px;
   width: 15px;
   margin: 0 5px;
-  border: white solid thin;
+  border: 1px solid #713434;
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
@@ -96,7 +99,6 @@
   position: absolute;
   display: flex;
   flex-flow: column wrap;
-
   color: white;
   animation-duration: 1s;
   animation-delay: 0.1s;
@@ -107,11 +109,8 @@
     margin: 0;
   }
 
-  button {
-    cursor: pointer;
-    color: white;
-    border: none;
-    background-color: #713434;
+  .button {
+    width: 20rem;
     padding: 2rem;
     margin: 2rem;
   }
@@ -129,8 +128,6 @@
 .textbox.top-right {
   align-items: flex-end;
   margin-right: 5rem;
-  top: 10%;
-  right: 5%;
   animation-name: textbox-top-right;
 }
 
@@ -144,23 +141,6 @@
     top: 25%;
     left: 25%;
     right: 25%;
-  }
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes textbox-top-right {
-  0% {
-    top: 10%;
-    right: 5%;
-  }
-  100% {
-    top: 10%;
-    right: 5%;
   }
   from {
     opacity: 0;
@@ -190,13 +170,11 @@
 @keyframes textbox-top-right {
   0% {
     top: 25%;
-    left: 50%;
-    right: 0%;
+    right: 5%;
   }
   100% {
     top: 5%;
-    left: 50%;
-    right: 0%;
+    right: 5%;
   }
   from {
     opacity: 0;
@@ -207,9 +185,44 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .textbox {
-    align-items: center;
-    top: 50%;
-    left: 50%;
+  .slideshow-container {
+    img {
+      height: 40rem;
+    }
+    .prev,
+    .next {
+      top: 20rem;
+    }
+
+    .textbox {
+      position: relative;
+      color: black;
+    }
+
+    .textbox.center {
+      animation-name: textbox;
+      align-items: center;
+      margin: auto;
+    }
+    .textbox.bottom-left {
+      animation-name: textbox;
+      align-items: center;
+      margin: auto;
+    }
+
+    .textbox.top-right {
+      animation-name: textbox;
+      align-items: center;
+      margin: auto;
+    }
+  }
+
+  @keyframes textbox {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }

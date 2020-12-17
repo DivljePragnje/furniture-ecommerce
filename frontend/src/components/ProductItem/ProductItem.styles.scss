@@ -1,0 +1,43 @@
+.product-item {
+  display: inline-block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+
+  .sold-out,
+  .on-sale {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    color: white;
+    padding: 0.5rem;
+    opacity: 0.9;
+  }
+  .sold-out {
+    background-color: #cccccc;
+  }
+
+  .on-sale {
+    background-color: #713434;
+  }
+  .name {
+    font-size: 20px;
+  }
+  .discount {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  .button-light {
+    width: 100%;
+    position: absolute;
+    bottom: 10rem;
+    right: 0rem;
+    opacity: 0;
+    transition: 0.4s;
+  }
+}
+
+.product-item:hover .button-light {
+  opacity: 1;
+}

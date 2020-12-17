@@ -51,7 +51,7 @@ export default function Placeorder(props) {
   const renderItemTotal = () => {
     return cartItems.map((item, index) => {
       return (
-        <div className="total-price">
+        <div key={index} className="total-price">
           <p>
             <b>{item.name}</b> ({item.material})
           </p>
@@ -105,7 +105,10 @@ export default function Placeorder(props) {
         <div className="total-container">
           <h1>ORDER</h1>
           <div>{renderItemTotal()}</div>
-          <button onClick={onPlaceOrder}> PLACE ORDER</button>
+          <button className="button" onClick={onPlaceOrder}>
+            <div id="slide"></div>
+            <span>PLACE ORDER</span>
+          </button>
         </div>
       </div>
     </div>

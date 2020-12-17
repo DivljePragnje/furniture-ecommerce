@@ -3,6 +3,20 @@
   flex-flow: wrap;
   justify-content: space-evenly;
 
+  .button-light {
+    width: 100%;
+    #slide {
+      left: -750px;
+    }
+  }
+  .button-light:hover #slide {
+    left: 0;
+  }
+
+  .button-light {
+    width: 100%;
+  }
+
   .image-small {
     max-width: 30%;
   }

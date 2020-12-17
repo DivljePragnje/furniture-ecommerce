@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../actions/cartActions";
-import PriceBox from "./PriceBox";
+import { addToCart } from "../../actions/cartActions";
+import PriceBox from "../PriceBox";
+import "./ProductItem.styles.scss";
 
 export default function ProductItem(props) {
   const { product } = props;
@@ -48,12 +49,12 @@ export default function ProductItem(props) {
       {renderOptional()}
       <img className="medium" src={images[0]} alt={name}></img>
       <button
-        type="button"
-        className="empty"
+        className="button-light"
         disabled={countInStock === 0}
         onClick={(e) => onAddToCart(e)}
       >
-        ADD TO CART
+        <div id="slide"></div>
+        <span>ADD TO CART</span>
       </button>
       <p className="name">{name}</p>
       <PriceBox price={price} discount={onDiscount} />

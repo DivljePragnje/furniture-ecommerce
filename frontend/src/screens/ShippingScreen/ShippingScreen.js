@@ -96,7 +96,11 @@ export default function ShippingScreen(props) {
             }}
             required
           />
-          <button>CONTINUE</button>
+
+          <button className="button">
+            <div id="slide"></div>
+            <span>CONTINUE</span>
+          </button>
         </form>
       </div>
     </div>

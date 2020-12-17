@@ -20,6 +20,28 @@ export default function HomeScreen() {
           </p>
         </div>
         <div className="hr"></div>
+
+        <div className="inspiration">
+          <div className="text">
+            <h1>Furniture Quality</h1>
+            <p>
+              Based on the idea that the things we accumulate during our
+              lifetime are the things that are most dear to us, TTWK pieces are
+              designed to be passed down from fathers to sons, generation after
+              generation.
+            </p>
+          </div>
+          <img src="/images/others/inspiration.jpg" alt="inspiration" />
+        </div>
+        <div className="hr"></div>
+        <div className="video">
+          <iframe
+            title="video"
+            src="https://www.youtube.com/embed/lvsjucag5VE"
+            allowFullScreen
+            frameBorder="0"
+          />
+        </div>
       </center>
     </div>
   );

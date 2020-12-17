@@ -34,37 +34,42 @@ export default function ProfileScreen(props) {
   };
   return (
     <div className="profile-container">
-      <form onSubmit={(e) => handleUpdate(e)}>
-        <h1>PROFILE</h1>
-        <input
-          type="text"
-          placeholder="Enter name"
-          id="name"
-          required
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-        />
-        <input
-          type="email"
-          placeholder="Enter Email"
-          required
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-        <input
-          type="password"
-          placeholder="Enter new password"
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          required
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        <button>Update profile</button>
-      </form>
+      <center>
+        <form onSubmit={(e) => handleUpdate(e)}>
+          <h1>PROFILE</h1>
+          <input
+            type="text"
+            placeholder="Enter name"
+            id="name"
+            required
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+          />
+          <input
+            type="email"
+            placeholder="Enter Email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+          <input
+            type="password"
+            placeholder="Enter new password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            required
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <button className="button">
+            <div id="slide"></div>
+            <span>UPDATE PROFILE</span>
+          </button>
+        </form>
+      </center>
     </div>
   );
 }

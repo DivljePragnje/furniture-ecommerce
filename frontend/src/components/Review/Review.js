@@ -1,4 +1,3 @@
-import Axios from "axios";
 import React from "react";
 import "./Review.styles.scss";
 export default function Review(props) {

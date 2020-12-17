@@ -41,7 +41,10 @@ export default function ReviewForm(props) {
           required
           onChange={(e) => setComment(e.target.value)}
         ></textarea>
-        <button>SUBMIT REVIEW</button>
+        <button className="button">
+          <div id="slide"></div>
+          <span>SUBMIT REVIEW</span>
+        </button>
       </form>
     </div>
   );

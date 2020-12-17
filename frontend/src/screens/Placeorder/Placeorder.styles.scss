@@ -56,20 +56,10 @@
       justify-content: space-between;
     }
 
-    button {
+    .button {
       cursor: pointer;
       align-self: flex-end;
-      color: #ffffff;
-      background-color: #713434;
-      padding: 1rem;
       width: 50%;
-      transition: 0.4s;
-    }
-    button:hover {
-      cursor: pointer;
-      color: #ffffff;
-      border-color: #a34b4b;
-      background-color: #a34b4b;
     }
   }
 }

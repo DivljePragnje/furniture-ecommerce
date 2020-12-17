@@ -83,7 +83,7 @@ footer {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -186,43 +186,7 @@ img.large {
 
 /* PRODUCT */
 
-.product-item {
-  display: inline-block;
-  position: relative;
-  margin: 10px;
-  cursor: pointer;
-}
-
-.product-item .sold-out,
-.product-item .on-sale {
-  position: absolute;
-  top: 10px;
-  left: 15px;
-  color: white;
-  padding: 0.5rem;
-  opacity: 0.9;
-}
-.product-item .sold-out {
-  background-color: #cccccc;
-}
-
-.product-item .on-sale {
-  background-color: #713434;
-}
-.product-item .name {
-  font-size: 20px;
-}
-.discount {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-
 /* BUTTONS */
-
-.product-item:hover button {
-  transition: 0.4s;
-  opacity: 1;
-}
 
 button.empty {
   cursor: pointer;
@@ -291,4 +255,104 @@ button.primary:hover {
 .alert-danger {
   color: #a02020;
   background-color: #ffe0e0e0;
+}
+
+/* BUTTONS */
+.button {
+  display: inline-flex;
+  height: 50px;
+  width: 150px;
+  border: 1px solid #713434;
+  color: #713434;
+  margin: 20px 0;
+  background-color: #713434;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.button span {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  letter-spacing: 1px;
+  position: relative;
+  transition: all 0.35s ease-Out;
+}
+.button:focus {
+  outline: none;
+}
+
+.button #slide {
+  width: 100%;
+  height: 100%;
+  left: -100%;
+  background: #a34b4b;
+  position: absolute;
+  transition: all 0.35s ease-Out;
+  bottom: 0;
+}
+
+.button:hover #slide {
+  left: 0;
+}
+
+.button:hover span {
+  color: #ffffff;
+}
+
+.button-light {
+  display: inline-flex;
+  height: 50px;
+  width: 150px;
+  border: 1px solid #713434;
+  margin: 20px 0;
+  background-color: #ffffff;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.button-light span {
+  color: #713434;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  letter-spacing: 1px;
+  position: relative;
+  transition: all 0.35s ease-Out;
+}
+
+.button-light:focus {
+  outline: none;
+}
+
+.button-light #slide {
+  width: 100%;
+  height: 100%;
+  left: -100%;
+  background: #a34b4b;
+  position: absolute;
+  transition: all 0.35s ease-Out;
+  bottom: 0;
+}
+.button-light:hover {
+  border: 1px solid #ffffff;
+}
+
+.button-light:hover #slide {
+  left: 0;
+}
+
+.button-light:hover span {
+  color: #ffffff;
 }

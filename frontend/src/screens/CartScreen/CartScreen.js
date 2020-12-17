@@ -49,8 +49,9 @@ export default function CartScreen(props) {
           {renderCartItems()} <hr />
           <div className="subtotal-container">
             <h2>Subtotal: {calculateItemsPrice()}</h2>
-            <button className="checkout-button" onClick={onCheckout}>
-              CHECKOUT
+            <button className="button-light" onClick={onCheckout}>
+              <div id="slide"></div>
+              <span>CHECKOUT</span>
             </button>
           </div>
         </div>

@@ -44,7 +44,10 @@ export default function Slideshow() {
           <div className={`textbox ${content.position}`}>
             <h1>{content.title}</h1>
             <p>{content.description}</p>
-            <button type="button">{content.btn_text}</button>
+            <button className="button">
+              <div id="slide"></div>
+              <span>{content.btn_text}</span>
+            </button>
           </div>
         </div>
       );
@@ -85,8 +88,6 @@ export default function Slideshow() {
         <i className="fa fa-chevron-left prev" onClick={onPrevClicked}></i>
         <i className="fa fa-chevron-right next" onClick={onNextClicked}></i>
       </div>
-
-      <br></br>
       <div className="bullets">{renderBullets()}</div>
     </div>
   );

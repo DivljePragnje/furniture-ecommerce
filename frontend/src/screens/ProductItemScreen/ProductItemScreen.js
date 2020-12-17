@@ -125,13 +125,14 @@ export default function ProductItemScreen(props) {
 
           <p className="description">{description}</p>
           <button
-            type="button"
-            className="primary"
+            className="button-light"
             disabled={countInStock === 0}
             onClick={onAddToCart}
           >
-            ADD TO CART
+            <div id="slide"></div>
+            <span>ADD TO CART</span>
           </button>
+
           <ReviewsSection productId={props.match.params.id} reviews={reviews} />
         </div>
       </div>

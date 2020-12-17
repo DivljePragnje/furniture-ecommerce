@@ -43,11 +43,15 @@ export default function Contact() {
               <input
                 type="email"
                 placeholder="Email"
+                required
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
               />
-              <button>SUBMIT</button>
+              <button className="button">
+                <div id="slide"></div>
+                <span>SUBMIT</span>
+              </button>
             </form>
           </div>
         </div>

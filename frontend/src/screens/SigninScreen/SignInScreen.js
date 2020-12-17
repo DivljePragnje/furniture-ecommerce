@@ -74,7 +74,10 @@ export default function SignInScreen(props) {
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button>Sign Up</button>
+            <button className="button">
+              <div id="slide"></div>
+              <span>SIGN UP</span>
+            </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
@@ -94,8 +97,11 @@ export default function SignInScreen(props) {
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <a href="#">Forgot your password?</a>
-            <button>Sign In</button>
+            <a href="/#">Forgot your password?</a>
+            <button className="button">
+              <div id="slide"></div>
+              <span>SIGN IN</span>
+            </button>
           </form>
         </div>
         <div className="overlay-container">
@@ -105,15 +111,25 @@ export default function SignInScreen(props) {
               <p>
                 To keep connected with us please login with your personal info
               </p>
-              <button className="ghost" id="signIn" onClick={onSignInAnimation}>
-                SIGN IN
+              <button
+                className="button-light"
+                id="signIn"
+                onClick={onSignInAnimation}
+              >
+                <div id="slide"></div>
+                <span>SIGN IN</span>
               </button>
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
-              <button className="ghost" id="signUp" onClick={onSignUpAnimation}>
-                SIGN UP
+              <button
+                className="button-light"
+                id="signUp"
+                onClick={onSignUpAnimation}
+              >
+                <div id="slide"></div>
+                <span>SIGN UP</span>
               </button>
             </div>
           </div>

@@ -1,13 +1,38 @@
 .about-container {
   .hr {
     width: 75%;
-    border-top: 1px solid #eeeeee;
+    margin: 5rem 0;
+    border-top: 2px solid #eeeeee;
+  }
+
+  .video {
+    height: 80rem;
+    iframe {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .about {
     width: 100%;
     p {
       width: 50%;
+    }
+  }
+  .inspiration {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    img {
+      max-width: 100rem;
+      width: 100%;
+    }
+    .text {
+      align-self: center;
+      max-width: 80rem;
+      width: 100%;
     }
   }
 }
