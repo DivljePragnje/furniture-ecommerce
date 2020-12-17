@@ -27,7 +27,7 @@ productRouter.get(
 
 // Just for adding template data
 productRouter.get(
-  "/seed",
+  "/populate/seed",
   expressAsyncHandler(async (req, res) => {
     const createdProducts = await Product.insertMany(data.products);
     res.send({ createdProducts });
@@ -39,7 +39,11 @@ productRouter.put(
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
-      product.reviews = [...product.reviews, req.body.review];
+      if (product.reviews) {
+        product.reviews = [...product.reviews, req.body.review];
+      } else {
+        product.reviews = req.body.review;
+      }
       const response = await product.save();
       if (response) {
         res.send(response);
