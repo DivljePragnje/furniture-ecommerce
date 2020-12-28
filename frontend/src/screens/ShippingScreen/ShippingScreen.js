@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { addShippingAddress } from "../../actions/orderActions";
 import _ from "lodash";
 import "./ShippingScreen.styles.scss";
+
 export default function ShippingScreen(props) {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [phone, setPhone] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
 
@@ -29,8 +31,9 @@ export default function ShippingScreen(props) {
     const shippingAddress = {
       name,
       surname,
+      email,
       address,
-      mobileNumber,
+      phone,
       postalCode,
       city,
     };
@@ -62,6 +65,14 @@ export default function ShippingScreen(props) {
             required
           />
           <input
+            type="email"
+            placeholder="example@gmail.com"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            required
+          />
+          <input
             type="text"
             placeholder="Address"
             onChange={(e) => {
@@ -71,10 +82,10 @@ export default function ShippingScreen(props) {
           />
           <input
             type="text"
-            placeholder="Mobile number"
-            id="mobilenumber"
+            placeholder="Phone number"
+            id="phone"
             onChange={(e) => {
-              setMobileNumber(e.target.value);
+              setPhone(e.target.value);
             }}
             required
           />

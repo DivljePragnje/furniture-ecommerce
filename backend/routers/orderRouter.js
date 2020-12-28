@@ -25,40 +25,101 @@ orderRouter.post(
 orderRouter.post(
   "/order-mail",
   expressAsyncHandler(async (req, res) => {
-    //const smtpTransport = mailer.createTransport;
-    /*const output = `<p> You have a new contact request<p>
-    <h3> Contact Details</h3>
-    <ul>
-    <li> Name: name</ul>
-    <li> Company: Company</ul>
-    <li> Email: Email</ul>
-    <li> Phone: Phone</ul>
-    <h3>Message</h3>
-    <p> MESSAGE DESCRIPTION</p>`;*/
-
-    let transporter = nodemailer.createTransport({
+    const transport = {
       host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
       auth: {
-        user: "tomicm990@gmail.com",
-        pass: "vojvodina90",
+        user: process.env.USERMAIL,
+        pass: process.env.PASSWORD,
       },
-    });
-    let mailOptions = {
-      from: '"Fred Foo 👻" <foo@example.com>',
-      to: "legionaries.83@gmail.com",
-      subject: "Hello ✔",
-      text: "Hello world?",
-      html: "<b>Hello world?</b>",
     };
+    var transporter = nodemailer.createTransport(transport);
 
-    transporter.sendMail(mailOptions, (error, info) => {
+    transporter.verify((error, success) => {
       if (error) {
-        return console.log(error);
+        console.log(error);
       }
-      console.log("Message sent");
+    });
+    /* MAIL TO ADMIN */
+    const writeOrders = (orders) => {
+      let ordersHtml = "";
+      orders.map((order) => {
+        ordersHtml += `<tr>
+                  <th style="border: 1px solid #dddddd;text-align:left;padding: 8px">${order.name}</th>
+                  <th style="border: 1px solid #dddddd;text-align:left;padding: 8px">${order.material}</th>
+                  <th style="border: 1px solid #dddddd;text-align:left;padding: 8px">${order.qty}</th>
+                </tr>`;
+      });
+      return ordersHtml;
+    };
+    const htmlToAdmin = `<center><p> <b>Ime i prezime:</b> ${req.body.shippingAddress.name.toUpperCase()} ${req.body.shippingAddress.surname.toUpperCase()}<p>
+    <p><b>Adresa isporuke:</b> ${req.body.shippingAddress.address.toUpperCase()}, ${req.body.shippingAddress.city.toUpperCase()}, ${
+      req.body.shippingAddress.postalcode
+    }</p>
+    <p><b>Telefon:</b>${req.body.shippingAddress.phone}</p>
+    <h3><b>Narudžbenica:</b> ${req.body._id}</h3>
+    <table style=" width:75%">
+      <tr>
+        <th style="border: 1px solid #dddddd;text-align:left;padding: 8px">Artikl</th>
+        <th style="border: 1px solid #dddddd;text-align:left;padding: 8px">Materijal</th>
+        <th style="border: 1px solid #dddddd;text-align:left;padding: 8px">Količina</th>
+      </tr>
+      ${writeOrders(req.body.orders)}
+    </table>
+    </center>`;
+
+    var mailToAdmin = {
+      from: req.body.shippingAddress.email,
+      to: "stolarijatopic@gmail.com",
+      subject: "NOVA NARUDŽBINA",
+      html: htmlToAdmin,
+    };
+    transporter.sendMail(mailToAdmin, (err, data) => {
+      if (err) {
+        res.json({
+          msg: "fail",
+        });
+      } else {
+        res.json({
+          msg: "success",
+        });
+      }
+    });
+
+    /* MAIL TO COSTUMER */
+
+    const htmlToCostumer = `<center><p>Zdravo! ${
+      req.body.shippingAddress.name
+    } ${req.body.shippingAddress.surname}</p>
+    <p>Hvala Vam na Vasoj narudžbini.</p>
+    <h2>Vaša narudžbina #${req.body._id}</h2>
+    <p>Naručeno: VREME</p>
+    <table style=" width:75%">
+      <tr>
+        <th style="border: 1px solid #dddddd;text-align:left;padding: 8px">Artikl</th>
+        <th style="border: 1px solid #dddddd;text-align:left;padding: 8px">Materijal</th>
+        <th style="border: 1px solid #dddddd;text-align:left;padding: 8px">Količina</th>
+      </tr>
+      ${writeOrders(req.body.orders)}
+    </table>
+    </center>
+    `;
+
+    var mailToCostumer = {
+      from: "stolarijatopic@gmail.com",
+      to: req.body.shippingAddress.email,
+      subject: "STOLARIJA TOPIĆ: potvrda narudžbine",
+      html: htmlToCostumer,
+    };
+    transporter.sendMail(mailToCostumer, (err, data) => {
+      if (err) {
+        res.json({
+          msg: "fail",
+        });
+      } else {
+        res.json({
+          msg: "success",
+        });
+      }
     });
   })
 );

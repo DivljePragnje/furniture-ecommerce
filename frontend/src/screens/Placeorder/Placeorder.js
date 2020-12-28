@@ -90,7 +90,7 @@ export default function Placeorder(props) {
               <p>
                 Full Name: {shippingAddress.name} {shippingAddress.surname}
               </p>
-              <p> Mobile Number: {shippingAddress.mobileNumber}</p>
+              <p> Mobile Number: {shippingAddress.phone}</p>
               <p>
                 Dilivery Address: {shippingAddress.address},{" "}
                 {shippingAddress.city}, {shippingAddress.postalCode}

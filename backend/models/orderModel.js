@@ -12,8 +12,9 @@ const singleOrderSchema = new mongoose.Schema({
 const shippingAddressSchema = new mongoose.Schema({
   name: { type: String, required: true },
   surname: { type: String, required: true },
+  email: { type: String, requaried: true },
   address: { type: String, required: true },
-  mobileNumber: { type: String, required: true },
+  phone: { type: String, required: true },
   city: { type: String, required: true },
   postalCode: { type: String, required: true },
   city: { type: String, required: true },

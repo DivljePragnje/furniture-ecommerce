@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 import expressAsyncHanlder from "express-async-handler";
 import { generateToken, isAuth } from "../utils.js";
 import expressAsyncHandler from "express-async-handler";
+import nodemailer from "nodemailer";
 
 const userRouter = express.Router();
 
@@ -79,18 +80,53 @@ userRouter.post(
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
     });
-    //TODO: Proveri ovaj data, majke ti
     user
       .save()
-      .then(() =>
+      .then(() => {
+        const transport = {
+          host: "smtp.gmail.com",
+          auth: {
+            user: process.env.USERMAIL,
+            pass: process.env.PASSWORD,
+          },
+        };
+        var transporter = nodemailer.createTransport(transport);
+
+        transporter.verify((error, success) => {
+          if (error) {
+            console.log(error);
+          }
+        });
+        const html = `<center> <p>Zdravo ${req.body.name}</p>
+        <p>Hvala što ste otvorili svoj nalog.</p>
+        <p>Da biste se prijavili na našu adresu, koristite email i password koji ste uneli prilikom kreiranja naloga</p>
+        <p>Veliki pozdrav!</p>
+        </center>`;
+        var mail = {
+          from: "stolarijatopic@gmail.com",
+          to: req.body.email,
+          subject: "DOBRODOŠLI",
+          html: html,
+        };
+        transporter.sendMail(mail, (err, data) => {
+          if (err) {
+            res.json({
+              msg: "fail",
+            });
+          } else {
+            res.json({
+              msg: "success",
+            });
+          }
+        });
         res.send({
           _id: data._id,
           name: data.name,
           email: data.email,
           isAdmin: user.isAdmin,
           token: generateToken(data),
-        })
-      )
+        });
+      })
       .catch((err) =>
         res.status(400).send({ message: "Email is already taken" })
       );

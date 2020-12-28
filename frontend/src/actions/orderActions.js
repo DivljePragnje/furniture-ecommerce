@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { createSelectorHook } from "react-redux";
 import { EMPTY_CART } from "../constants/cartConstants";
 import {
   ORDER_FAIL,
@@ -17,6 +18,21 @@ export const orderItems = (order) => async (dispatch) => {
     dispatch({ type: EMPTY_CART });
     localStorage.removeItem("cartItems");
     localStorage.removeItem("shippingAddress");
+    const responseMail = await Axios.post("/api/orders/order-mail", order);
+  } catch (error) {
+    dispatch({
+      type: ORDER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const sendOrderMail = (order) => async (dispatch) => {
+  try {
+    const response = await Axios.post("/api/orders/ordermail", order);
   } catch (error) {
     dispatch({
       type: ORDER_FAIL,
