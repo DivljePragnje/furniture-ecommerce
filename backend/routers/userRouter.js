@@ -83,7 +83,7 @@ userRouter.post(
     user
       .save()
       .then(() => {
-        const transport = {
+        /*const transport = {
           host: "smtp.gmail.com",
           auth: {
             user: process.env.USERMAIL,
@@ -118,7 +118,7 @@ userRouter.post(
               msg: "success",
             });
           }
-        });
+        });*/
         res.send({
           _id: data._id,
           name: data.name,

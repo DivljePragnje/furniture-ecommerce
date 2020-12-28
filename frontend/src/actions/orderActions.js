@@ -18,7 +18,7 @@ export const orderItems = (order) => async (dispatch) => {
     dispatch({ type: EMPTY_CART });
     localStorage.removeItem("cartItems");
     localStorage.removeItem("shippingAddress");
-    const responseMail = await Axios.post("/api/orders/order-mail", order);
+    //const responseMail = await Axios.post("/api/orders/order-mail", order);
   } catch (error) {
     dispatch({
       type: ORDER_FAIL,
