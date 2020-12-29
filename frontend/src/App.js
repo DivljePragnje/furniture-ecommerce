@@ -10,6 +10,9 @@ import ConfirmationScreen from "./screens/ConfirmationScreen/ConfirmationScreen"
 import Contact from "./components/Contact/Contact";
 import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import Navbar from "./components/Navbar/Navbar";
+import PrivateRoute from "./components/Routes/PrivateRoute";
+import ProductList from "./screens/ProductList/ProductList";
+import EditProductScreen from "./screens/EditProductScreen/EditProductScreen";
 
 function App(props) {
   return (
@@ -27,8 +30,14 @@ function App(props) {
           <Route path="/shipping" component={ShippingScreen} />
           <Route path="/cart" component={CartScreen} />
           <Route path="/signin" component={SignInScreen} />
-          <Route path="/profile" component={ProfileScreen} />
-          <Route path="/product/:id" component={ProductItemScreen} />
+          <Route
+            path="/product/:id/edit"
+            component={EditProductScreen}
+            exact
+          ></Route>
+          <PrivateRoute path="/profile" component={ProfileScreen} />
+          <PrivateRoute path="/productlist" component={ProductList} />
+          <Route path="/product/:id" component={ProductItemScreen} exact />
           <Route path="/" component={HomeScreen} exact />
         </main>
 

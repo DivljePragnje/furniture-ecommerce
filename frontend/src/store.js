@@ -6,7 +6,10 @@ import {
   ShippingAddressReducers,
 } from "./reducers/orderReducers";
 import {
+  ProductCreateReducer,
+  ProductDeleteReducer,
   productDetailReducer,
+  ProductEditReducer,
   productListReducer,
 } from "./reducers/productReducers";
 import { registerUserReducer, signInReducer } from "./reducers/userReducers";
@@ -33,6 +36,9 @@ const reducer = combineReducers({
   cartItems: cartListReducers,
   orderList: orderReducers,
   shippingAddress: ShippingAddressReducers,
+  productCreate: ProductCreateReducer,
+  productDelete: ProductDeleteReducer,
+  productEdit: ProductEditReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./DropdownProfile.styles.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signOut } from "../../actions/userActions.js";
 
 export default function DropdownProfile(props) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const userDetails = useSelector((state) => state.userDetails);
+  const { userInfo } = userDetails;
   const [dropdownClicked, setDropdownClicked] = useState(false);
 
   const dropdownProfile = useRef(null);
@@ -49,6 +51,17 @@ export default function DropdownProfile(props) {
             <div id="slide"></div>
             <span>PROFILE</span>
           </button>
+          {userInfo.isAdmin ? (
+            <button
+              className="button"
+              onClick={(e) => onButtonClick("/additem")}
+            >
+              <div id="slide"></div>
+              <span>ADD ITEM</span>
+            </button>
+          ) : (
+            <></>
+          )}
           <button className="button" onClick={onSignOut}>
             <div id="slide"></div>
             <span>SIGN OUT</span>

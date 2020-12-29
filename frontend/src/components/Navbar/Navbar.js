@@ -9,6 +9,7 @@ import DropdownCollection from "../DropdownCollection/DropdownCollection.js";
 import DropdownProfile from "../DropdownProfile/DropdownProfile.js";
 import DropdownCart from "../DropdownCart/DropdownCart";
 import NavbarTouch from "./NavbarTouch";
+import DropdownAdmin from "../DropdownAdmin/DropdownAdmin";
 
 export default function Navbar() {
   const userDetails = useSelector((state) => state.userDetails);
@@ -34,6 +35,15 @@ export default function Navbar() {
               <Link to="/signin">SIGN IN</Link>
             ) : (
               <DropdownProfile userName={userInfo.name} />
+            )}
+          </div>
+          <div>
+            {_.isEmpty(userInfo) ? (
+              <></>
+            ) : userInfo.isAdmin ? (
+              <DropdownAdmin />
+            ) : (
+              <></>
             )}
           </div>
         </div>

@@ -9,6 +9,18 @@ const {
   PRODUCT_ADDING_REVIEW_SUCCESS,
   PRODUCT_ADDING_RATING_SUCCESS,
   PRODUCT_ADDING_RATING_FAIL,
+  PRODUCT_CREATE_REQUEST,
+  PRODUCT_CREATE_SUCCESS,
+  PRODUCT_CREATE_FAIL,
+  PRODUCT_DELETE_REQUEST,
+  PRODUCT_DELETE_SUCCESS,
+  PRODUCT_DELETE_FAIL,
+  PRODUCT_DELETE_RESET,
+  PRODUCT_CREATE_RESET,
+  PRODUCT_EDIT_REQUEST,
+  PRODUCT_EDIT_SUCCESS,
+  PRODUCT_EDIT_FAIL,
+  PRODUCT_EDIT_RESET,
 } = require("../constants/productConstants");
 
 export const productListReducer = (
@@ -52,6 +64,51 @@ export const productDetailReducer = (
       return { loading: false, product: action.payload };
     case PRODUCT_ADDING_REVIEW_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const ProductCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_CREATE_REQUEST:
+      return { loading: true };
+    case PRODUCT_CREATE_SUCCESS:
+      return { loading: false, success: true, product: action.payload };
+    case PRODUCT_CREATE_FAIL:
+      return { loading: false, success: false, error: action.payload };
+    case PRODUCT_CREATE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const ProductDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_DELETE_REQUEST:
+      return { loading: true };
+    case PRODUCT_DELETE_SUCCESS:
+      return { loading: false, success: true, product: action.payload };
+    case PRODUCT_DELETE_FAIL:
+      return { loading: false, success: false, error: action.payload };
+    case PRODUCT_DELETE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const ProductEditReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_EDIT_REQUEST:
+      return { loading: true };
+    case PRODUCT_EDIT_SUCCESS:
+      return { loading: false, success: true, product: action.payload };
+    case PRODUCT_EDIT_FAIL:
+      return { loading: false, success: false, error: action.payload };
+    case PRODUCT_EDIT_RESET:
+      return {};
     default:
       return state;
   }

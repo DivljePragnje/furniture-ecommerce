@@ -1,5 +1,4 @@
 import Axios from "axios";
-import { createSelectorHook } from "react-redux";
 import { EMPTY_CART } from "../constants/cartConstants";
 import {
   ORDER_FAIL,
@@ -32,7 +31,7 @@ export const orderItems = (order) => async (dispatch) => {
 
 export const sendOrderMail = (order) => async (dispatch) => {
   try {
-    const response = await Axios.post("/api/orders/ordermail", order);
+    await Axios.post("/api/orders/ordermail", order);
   } catch (error) {
     dispatch({
       type: ORDER_FAIL,
