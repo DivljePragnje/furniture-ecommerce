@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signOut } from "../../actions/userActions.js";
+import DropdownAdmin from "../DropdownAdmin/DropdownAdmin";
 import _ from "lodash";
 
 export default function NavbarTouch() {
@@ -100,6 +101,15 @@ export default function NavbarTouch() {
           <div id="slide"></div>
           <span>PROFILE</span>
         </button>
+        <div>
+          {_.isEmpty(userInfo) ? (
+            <></>
+          ) : userInfo.isAdmin ? (
+            <DropdownAdmin className="button dropdown" />
+          ) : (
+            <></>
+          )}
+        </div>
         <button className="button dropdown" onClick={(e) => onSignOut()}>
           <div id="slide"></div>
           <span>SIGN-OUT</span>

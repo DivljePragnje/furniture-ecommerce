@@ -112,13 +112,14 @@ productRouter.put(
     const productId = req.params.id;
     const product = await Product.findById(productId);
     if (product) {
-      product.name = req.body.name;
-      product.price = req.body.price;
-      product.image = req.body.image;
-      product.category = req.body.category;
-      product.brand = req.body.brand;
-      product.countInStock = req.body.countInStock;
-      product.description = req.body.description;
+      product.name = req.body.name || product.name;
+      product.price = req.body.price || product.price;
+      product.onDiscount = req.body.onDiscount || product.onDiscount;
+      product.category = req.body.category || product.category;
+      product.countInStock = req.body.countInStock || product.countInStock;
+      product.description = req.body.description || product.description;
+      product.images = req.body.images || product.images;
+      product.materials = req.body.materials || product.materials;
       const updatedProduct = await product.save();
       res.send({ message: "Product Updated", product: updatedProduct });
     } else {

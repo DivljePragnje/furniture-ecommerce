@@ -32,4 +32,10 @@
   .button {
     min-width: 70%;
   }
+
+  .materials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }

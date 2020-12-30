@@ -7,6 +7,7 @@ import productRouter from "./routers/productRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 import newsletterRouter from "./routers/newsletterRouter.js";
 import path from "path";
+import uploadRouter from "./routers/uploadRouter.js";
 
 dotenv.config();
 
@@ -28,9 +29,10 @@ app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/newsletters", newsletterRouter);
+app.use("/api/uploads", uploadRouter);
 
 const __dirname = path.resolve();
-console.log(path.join(__dirname, "/frontend/build"));
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 app.use(express.static(path.join(__dirname, "/frontend/build")));
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
